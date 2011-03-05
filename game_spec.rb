@@ -1,5 +1,10 @@
-def step(living_cells)
-  living_cells
+require "set"
+
+def step(living)
+  universe = all_cells(living)
+  dead = universe - Set.new(living)
+  new_living = dead.select { |point| alive?(live_neighbor_count(point, living), false) }
+  new_living + living.select { |point| alive?(live_neighbor_count(point, living), true) }
 end
 
 describe "one step" do
