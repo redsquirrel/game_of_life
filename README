@@ -1,0 +1,14 @@
+I practiced Conway's Game of Life during Obtiva's Code Retreat. It's a great
+exercise to throw away your code. But tonight I couldn't sleep until I felt a
+solution leave my head and hands.
+
+This should produce a nice "glider" in your console...
+
+ruby renderer.rb
+
+If you look at the source and the history, you'll notice I used just a couple
+high level tests for sanity checks. The rest I did from the repetive practice
+that etched some of these structures into my head. It would be fun to fork
+this and refactor it in lots of better ways.
+
+Enjoy!
