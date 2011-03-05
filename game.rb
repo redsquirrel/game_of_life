@@ -3,8 +3,8 @@ require "set"
 def step(living)
   universe = all_cells(living)
   dead = universe - living
-  new_living = dead.select(&find_living_cells_among_the_dead(living))
-  new_living += living.select(&find_living_cells_among_the_living(living))
+  new_living = dead.select(&find_zombies(living))
+  new_living += living.select(&find_survivors(living))
   Set.new(new_living)
 end
 
@@ -14,11 +14,11 @@ def all_cells(living)
   end
 end
 
-def find_living_cells_among_the_dead(living)
+def find_zombies(living)
   find_living_cells(living, false)
 end
 
-def find_living_cells_among_the_living(living)
+def find_survivors(living)
   find_living_cells(living, true)
 end
 
@@ -39,14 +39,13 @@ def live_neighbor_count(cell, living)
 end
 
 def neighbors_for(cell)
-  my_x, my_y = cell
-  neighbors = []
-  SHIFTERS.each do |y|
-    SHIFTERS.each do |x|
-      neighbors << [my_x + x, my_y + y]
-    end
-  end
-  neighbors - [cell]
+  x, y = cell
+  [ [x - 1, y - 1],
+    [x,     y - 1],
+    [x + 1, y - 1],
+    [x - 1, y],
+    [x + 1, y],
+    [x - 1, y + 1],
+    [x,     y + 1],
+    [x + 1, y + 1] ]
 end
-
-SHIFTERS = [-1, 0, 1]
