@@ -36,8 +36,7 @@ end
 living = Set.new([[2, 3], [3, 3], [4, 3], [4, 2], [3, 1]]) # glider
 # living = Set.new([[2, 3], [3, 3], [4, 3], [4, 4], [3, 5]]) # inverted glider
 
-until living.empty?
-  render(all_cells(living), living)
-  living = step(living)
+play(living) do |all, living|
+  render(all, living)
   sleep 0.2
 end

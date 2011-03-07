@@ -1,5 +1,14 @@
 require "set"
 
+def play(living)
+  until living.empty?
+    if block_given?
+      yield(all_cells(living), living)
+    end
+    living = step(living)
+  end
+end
+
 def step(living)
   universe = all_cells(living)
   dead = universe - living
